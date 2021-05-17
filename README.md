@@ -1,6 +1,10 @@
 # fantasy-game-of-odd-even-choice
 fantasy game - odd even choice
 
+https://masterchoice.firebaseapp.com/
+
+https://masterchoice.web.app/
+
 
 home page
 ![1](https://user-images.githubusercontent.com/53290891/118441483-e3889d00-b706-11eb-8c30-e45112740713.JPG)
