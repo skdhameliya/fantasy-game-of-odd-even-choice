@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>early choice winner</title>
+</head>
+<!-- <body onload="getWinner()"> -->
+<body>
+
+    <!-- <a class="dropdown-item" href="#" onclick="getWinner()">get winner</a> -->
+
+
+    <input type="radio" name="ch_require" value="odd" onclick="setRadioValue(this.value)" >odd
+    <input type="radio" name="ch_require" value="even" onclick="setRadioValue(this.value)" >even
+    <button type="button" class="btn btn-primary" onclick="getWinner()">Get Winners</button>
+
+
+    <h1>winner</h1>
+    <div id="winnerData">
+
+    </div>
+
+    <h1>winner loser</h1>
+    <div id="winnerLoserData">
+
+    </div>
+    
+
+<br><br>choose final winner one more time <br><br>
+    <input type="radio" name="ch_require" value="odd" onclick="setRadioValue1(this.value)" >odd
+    <input type="radio" name="ch_require" value="even" onclick="setRadioValue1(this.value)" >even
+    <button type="button" class="btn btn-primary" onclick="payScoreToWinner()">pay Score To Winner</button>
+
+<!-- fire st -->
+      <!-- The core Firebase JS SDK is always required and must be listed first -->
+      <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+      <!-- <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script> -->
+      <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
+      <!-- <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-analytics.js"></script> -->
+
+      <!-- TODO: Add SDKs for Firebase products that you want to use
+          https://firebase.google.com/docs/web/setup#available-libraries -->
+
+      <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+          apiKey: "AIzaSyAZdgcOEflGSZsYAvkxK9vGvvRASkxN_4Q",
+          authDomain: "masterchoice.firebaseapp.com",
+          projectId: "masterchoice",
+          storageBucket: "masterchoice.appspot.com",
+          messagingSenderId: "438671130591",
+          appId: "1:438671130591:web:6473f9954a169b788a8e6a"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        // firebase.analytics();
+      </script>      
+<!-- fire end -->
+
+<script>
+
+    function setRadioValue(val)
+    {
+        setWinner = val;
+    }
+// getWinner();
+match_Name = "apr_09_2021_mi_rcb_10rs/";
+    function getWinner(){
+        
+        console.log("setWinner---->"+setWinner);
+            firebase.database().ref(match_Name).on("value", function (data){
+            odd11 = data.child("oddParti").numChildren();
+            even11 = data.child("evenParti").numChildren();
+            // console.log(odd11+"---"+even11);
+
+            if(setWinner == "odd" && (odd11 > even11) )
+            {
+                Parti = "oddParti";
+                // odd won 1 to even11
+                firebase.database().ref(match_Name+Parti+"/").orderByKey().limitToFirst(even11).once("value", (snap) => {
+                    document.getElementById("winnerData").innerHTML = JSON.stringify(snap.val());;
+
+                    firebase.database().ref("/winner_"+Parti+"/").set({
+                        winner1 : snap.val()
+                    });
+
+                });
+
+                // odd won even11 to odd11 
+                firebase.database().ref(match_Name+Parti+"/").orderByKey().limitToLast(odd11-even11).once("value", (snap) => {
+                    document.getElementById("winnerLoserData").innerHTML = JSON.stringify(snap.val());;
+
+                    firebase.database().ref("/winnerLoser_"+Parti+"/").set({
+                        winnerLoser1 : snap.val()
+                    });
+
+                });
+            
+                // even lost all even11 lost so no code require
+            }
+            else if(setWinner == "even" && (odd11 > even11) )
+            {
+                Parti = "evenParti";
+                // odd won 1 to even11
+                firebase.database().ref(match_Name+Parti+"/").orderByKey().limitToFirst(even11).once("value", (snap) => {
+                    document.getElementById("winnerData").innerHTML = JSON.stringify(snap.val());;
+
+                    firebase.database().ref("/winner_"+Parti+"/").set({
+                        winner1 : snap.val()
+                    });
+
+                });
+            }
+            else if(setWinner == "odd" && (odd11 < even11) )
+            {
+                Parti = "oddParti";
+                // odd won 1 to even11
+                firebase.database().ref(match_Name+Parti+"/").orderByKey().limitToFirst(odd11).once("value", (snap) => {
+                    document.getElementById("winnerData").innerHTML = JSON.stringify(snap.val());;
+
+                    firebase.database().ref("/winner_"+Parti+"/").set({
+                        winner1 : snap.val()
+                    });
+
+                });
+            }
+            else if(setWinner == "even" && (odd11 < even11) )
+            {
+                Parti = "evenParti";
+                // odd won 1 to even11
+                firebase.database().ref(match_Name+Parti+"/").orderByKey().limitToFirst(odd11).once("value", (snap) => {
+                    document.getElementById("winnerData").innerHTML = JSON.stringify(snap.val());;
+
+                    firebase.database().ref("/winner_"+Parti+"/").set({
+                        winner1 : snap.val()
+                    });
+
+                });
+
+                // odd won even11 to odd11 
+                firebase.database().ref(match_Name+Parti+"/").orderByKey().limitToLast(even11-odd11).once("value", (snap) => {
+                    document.getElementById("winnerLoserData").innerHTML = JSON.stringify(snap.val());;
+
+                    firebase.database().ref("/winnerLoser_"+Parti+"/").set({
+                        winnerLoser1 : snap.val()
+                    });
+
+                });
+            
+                // even lost all even11 lost so no code require
+            }
+            
+                
+            });
+        
+    }
+
+
+
+    function setRadioValue1(val)
+    {
+        setWinner1 = val;
+        console.log(setWinner1);
+    }
+    function payScoreToWinner()
+    {
+        // first call setRadioValue() by clik get winner button
+    //    alert(setWinner+"-----------------"); 
+
+        firebase.database().ref("winner_"+setWinner1+"Parti/winner1/").once("value", function (data){
+            // console.log(data.val());
+            // JSON.stringify
+
+            data.forEach((childData) =>{
+                // console.log(childData.key);
+                // console.log(childData.val());
+                
+                var key = childData.key;
+                firebase.database().ref("usrs/"+key).once("value", function (data1){
+                    var c_bal = data1.val().balance;
+                    // console.log(c_bal+10);
+                    c_bal = c_bal + 10;
+                    
+                    firebase.database().ref("usrs/"+key).update({
+                        balance : c_bal
+                    });
+                
+                });
+            });
+        });
+
+        
+    }
+
+</script>
+
+</body>
+</html>

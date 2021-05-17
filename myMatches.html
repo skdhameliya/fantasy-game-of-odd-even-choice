@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Choice - my matches</title>
+
+    <style>
+        #oddEntry20, #evenEntry20{
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body onload="showMyMacthes()">
+
+<b id="userOrijinalGmail">please wait...</b>
+<p id="oddEntry10"></p>
+<p id="evenEntry10"></p>
+<p id="oddEntry20"></p>
+<p id="evenEntry20"></p>
+
+<!-- fire st -->
+      <!-- The core Firebase JS SDK is always required and must be listed first -->
+      <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
+      <!-- <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-analytics.js"></script> -->
+
+      <!-- TODO: Add SDKs for Firebase products that you want to use
+          https://firebase.google.com/docs/web/setup#available-libraries -->
+
+      <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+          apiKey: "AIzaSyAZdgcOEflGSZsYAvkxK9vGvvRASkxN_4Q",
+          authDomain: "masterchoice.firebaseapp.com",
+          projectId: "masterchoice",
+          storageBucket: "masterchoice.appspot.com",
+          messagingSenderId: "438671130591",
+          appId: "1:438671130591:web:6473f9954a169b788a8e6a"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        // firebase.analytics();
+      </script>      
+<!-- fire end -->
+
+<script>
+
+    currentEmailOrijinal = sessionStorage.getItem("currentEmailOrijinal");
+    currentEmail1 = sessionStorage.getItem("currentEmail1");
+    // console.log("currentEmail1 = "+currentEmail1);
+
+    function showMyMacthes(){
+        
+        db = firebase.database();
+        document.getElementById("userOrijinalGmail").innerHTML = currentEmailOrijinal;
+
+        // 10 st
+        match_Name1 = "apr_09_2021_mi_rcb_10rs";
+        oddEntry_10=0;
+        evenEntry_10=0;
+
+        db.ref(match_Name1+"/users/"+currentEmail1).once("value" ,function (data){
+            // if(data.val()){
+
+                if(data.val().oddPartiMatch){
+                    var oddMatches = data.val().oddPartiMatch;
+                    var oddMatches_arr = oddMatches.split("@");
+                    
+                    for(var i=0; i<oddMatches_arr.length; i++)
+                    {
+                        db.ref(match_Name1+"/oddParti/"+oddMatches_arr[i]).once("value", function (data1){
+                            if(data1.val())
+                            {
+                                oddEntry_10++;
+                                document.getElementById("oddEntry10").innerHTML = "odd Entry (10 Rs) : "+oddEntry_10;
+                            }
+                        });
+                    }
+                }
+
+                if(data.val().evenPartiMatch){
+                    var evenMatches = data.val().evenPartiMatch;
+                    var evenMatches_arr = evenMatches.split("@");    
+
+                    for(var i=0; i<evenMatches_arr.length; i++)
+                    {
+                        db.ref(match_Name1+"/evenParti/"+evenMatches_arr[i]).once("value", function (data2){
+                            if(data2.val())
+                            {
+                                evenEntry_10++;
+                                document.getElementById("evenEntry10").innerHTML = "even Entry (10 Rs) : "+evenEntry_10;
+                            }
+                        });
+                    }
+                }
+            // }
+        });
+        // 10 end
+
+        // 20 st
+        match_Name2 = "apr_09_2021_mi_rcb_20rs";
+        oddEntry_20=0;
+        evenEntry_20=0;
+
+        db.ref(match_Name2+"/users/"+currentEmail1).once("value" ,function (data){
+            // if(data.val()){
+                if(data.val().oddPartiMatch){
+                    var oddMatches = data.val().oddPartiMatch;
+                    var oddMatches_arr = oddMatches.split("@");
+
+                    for(var i=0; i<oddMatches_arr.length; i++)
+                    {
+                        db.ref(match_Name2+"/oddParti/"+oddMatches_arr[i]).once("value", function (data1){
+                            if(data1.val())
+                            {
+                                oddEntry_20++;
+                                document.getElementById("oddEntry20").innerHTML = "odd Entry (20 Rs) : "+oddEntry_20;
+                            }
+                        });
+                    }
+                }
+
+                if(data.val().evenPartiMatch){
+                    var evenMatches = data.val().evenPartiMatch;
+                    var evenMatches_arr = evenMatches.split("@");
+
+                    for(var i=0; i<evenMatches_arr.length; i++)
+                    {
+                        db.ref(match_Name2+"/evenParti/"+evenMatches_arr[i]).once("value", function (data2){
+                            if(data2.val())
+                            {
+                                evenEntry_20++;
+                                document.getElementById("evenEntry20").innerHTML = "even Entry (20 Rs) : "+evenEntry_20;
+                            }
+                        });
+                    }
+                }
+
+            // }
+        });
+        //20 end
+        
+    }
+</script>
+
+</body>
+</html>

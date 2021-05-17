@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Choice - early choice winner</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+
+    <style>
+        .card{
+            box-shadow: 0 0 20px 1px black;
+        }
+        .navbar{
+            border-radius: 40px;
+        }
+    </style>
+
+<style>
+    #loginBtn, #logoutBtn, #userWallet, #myMatchBtn {
+      display: none;
+    }
+  </style>
+
+
+</head>
+<body>
+
+    <!-- <button type="button" class="btn btn-primary" id="loginBtn" onclick="userLogin()">Google Sign Inn</button>
+    <button type="button" class="btn btn-primary" id="logoutBtn" onclick="userLogout()">Google Sign Out</button> -->
+
+    <!-- <style>
+        .navbar a{
+            color: white;
+        }
+    </style> -->
+    
+    <div class="container-fluid mt-3">
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+            <a class="navbar-brand" href="#" style="color: white;">Master Choice</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <!-- <li class="nav-item active">
+                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="loginBtn" onclick="userLogin()" style="color: white;">Login</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#" id="logoutBtn" onclick="userLogout()" style="color: white;">logout</a>
+                  </li>
+                <li class="nav-item" data-toggle="modal" data-target="#exampleModal">
+                    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> -->
+                        <a class="nav-link" href="#" id="userWallet"  data-toggle="modal" data-target="#exampleModal" style="color: white;">Wallet</a>
+                    <!-- </button> -->
+                </li>
+                <!-- <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dropdown
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="./winer.html">get winner</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                  </div>
+                </li> -->
+                <li class="nav-item">
+                  <a class="nav-link" id="myMatchBtn" href="./myMatches.html" style="color: white;">My Matches</a>
+                </li>
+              </ul>
+            </div>
+        </nav>
+    </div>
+
+      
+    <div class="container mt-5">
+        <h1 class="text-center">Available Matches</h1>
+        <div class="row mt-5">
+            
+            <div class="col-sm-6 p-2">
+                <div class="card" data-toggle="modal" data-target="#exampleModal10Rs" onclick="loadTotalOddEvenNo(10)">
+                    <div class="card-body">
+                        <p class="card-text text-center">IPL T20, 09 Apr 2021 </p>
+                        <div class="container-fluid">
+                            <div class="row align-items-center">
+                                <div class="col-3">
+                                    <img src="./img/mi.png" width="100%" alt="">
+                                </div>
+                                <div class="col-6">
+                                    <h5 class="card-title text-center">MI vs RCB</h5>
+                                </div>
+                                <div class="col-3">
+                                    <img src="./img/rcb.png" width="100%" alt="">
+                                </div>
+                            </div>
+                            <div class="row"> 
+                                <div class="col-sm-12 text-center">
+                                    <p class="card-text">MA Chidambaram Stadium.</p>
+                                    <p class="card-text">Entry : <b>10 Rs.</b></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+
+            <div class="col-sm-6 p-2">
+                <div class="card" data-toggle="modal" data-target="#exampleModal10Rs" onclick="loadTotalOddEvenNo(20)">
+                    <div class="card-body">
+                        <p class="card-text text-center">IPL T20, 09 Apr 2021 </p>
+                        <div class="container-fluid">
+                            <div class="row align-items-center">
+                                <div class="col-3">
+                                    <img src="./img/mi.png" width="100%" alt="">
+                                </div>
+                                <div class="col-6">
+                                    <h5 class="card-title text-center">MI vs RCB</h5>
+                                </div>
+                                <div class="col-3">
+                                    <img src="./img/rcb.png" width="100%" alt="">
+                                </div>
+                            </div>
+                            <div class="row"> 
+                                <div class="col-sm-12 text-center">
+                                    <p class="card-text">MA Chidambaram Stadium.</p>
+                                    <p class="card-text">Entry : <b>20 Rs.</b></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+
+            <!--  <div class="col-sm-4 p-2">
+                <div class="card" data-toggle="modal" data-target="#exampleModal10Rs" onclick="loadTotalOddEvenNo(30)">
+                    <div class="card-body">
+                        <p class="card-text text-center">IPL T20, 09 Apr 2021 </p>
+                        <div class="container-fluid">
+                            <div class="row align-items-center">
+                                <div class="col-3">
+                                    <img src="./img/mi.png" width="100%" alt="">
+                                </div>
+                                <div class="col-6">
+                                    <h5 class="card-title text-center">MI vs RCB</h5>
+                                </div>
+                                <div class="col-3">
+                                    <img src="./img/rcb.png" width="100%" alt="">
+                                </div>
+                            </div>
+                            <div class="row"> 
+                                <div class="col-sm-12 text-center">
+                                    <p class="card-text">MA Chidambaram Stadium.</p>
+                                    <p class="card-text">Entry : <b>30 Rs.</b></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>  -->  
+
+        </div>
+    </div>
+
+ <!-- <h1 class="text-center mt-5">Upcoming Matches</h1> -->
+
+<!-- Scrollable modal 10 rs match -->
+    <div class="modal fade" id="exampleModal10Rs" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Entry : <b id="entryFee">NaN</b> <b>Rs.</b></h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <!-- <input type="text" class="form-control" id="usrNm" placeholder="Amount"> -->
+
+                    <!-- <div class="input-group text-center"> -->
+                        <p class="card-text">ODD Choice : <b id="totalOdd">NaN</b> </p>
+                        <!-- <div class="input-group-append"> -->
+                            <p class="card-text"> EVEN Choice : <b id="totalEven">NaN</b></p>
+                        <!-- </div> -->
+                    <!-- </div> -->
+
+                    
+                    
+                    <!-- <p class="card-text">Entry : <b id="entryFee">NaN</b> <b>Rs.</b></p> -->
+                    <span>
+                        Select your choice : 
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" id="oddBtn" class="btn btn-danger">ODD</button>
+                            <button type="button" id="evenBtn" class="btn btn-success">EVEN</button>
+                        </div>                                 
+                    </span>
+                </div>
+                <!-- <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Scrollable modal  wallet -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">My Wallet</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    
+                    <h4 class="text-center">Balance : <b id="userBalance">NaN</b> <b>Rs</b></h4>
+
+                    <div class="input-group mb-3">
+                        <input type="number" class="form-control" id="userEnteredAmount" placeholder="Enter amount to add">
+                        <div class="input-group-append">
+                            <button type="button" class="btn btn-primary" onclick="addMoneyByUser()">Add Money</button>
+                        </div>
+                    </div>
+                
+                </div>
+                <!-- <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+
+<!-- fire st -->
+      <!-- The core Firebase JS SDK is always required and must be listed first -->
+      <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
+      <!-- <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-analytics.js"></script> -->
+
+      <!-- TODO: Add SDKs for Firebase products that you want to use
+          https://firebase.google.com/docs/web/setup#available-libraries -->
+
+      <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+          apiKey: "AIzaSyAZdgcOEflGSZsYAvkxK9vGvvRASkxN_4Q",
+          authDomain: "masterchoice.firebaseapp.com",
+          projectId: "masterchoice",
+          storageBucket: "masterchoice.appspot.com",
+          messagingSenderId: "438671130591",
+          appId: "1:438671130591:web:6473f9954a169b788a8e6a"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        // firebase.analytics();
+      </script>      
+<!-- fire end -->
+
+    <script src="./js/auth.js"></script>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <script src="./js/razorwallet.js"></script>    
+
+</body>
+</html>
