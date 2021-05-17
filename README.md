@@ -6,14 +6,14 @@ https://masterchoice.firebaseapp.com/
 https://masterchoice.web.app/
 
 
-home page
+home page (or guest login or without login)
 ![1](https://user-images.githubusercontent.com/53290891/118441483-e3889d00-b706-11eb-8c30-e45112740713.JPG)
-
-contest of 20 rupees
-![2](https://user-images.githubusercontent.com/53290891/118441455-d9669e80-b706-11eb-919d-c132c6cf93f8.JPG)
 
 after login
 ![3](https://user-images.githubusercontent.com/53290891/118441460-db306200-b706-11eb-9cfc-ababfe9a4b2e.JPG)
+
+contest of 20 rupees
+![2](https://user-images.githubusercontent.com/53290891/118441455-d9669e80-b706-11eb-919d-c132c6cf93f8.JPG)
 
 wallet balance
 ![4](https://user-images.githubusercontent.com/53290891/118441464-dc618f00-b706-11eb-90a6-8b3f6add3ffa.JPG)
